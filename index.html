@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Бюджет">
+<meta name="theme-color" content="#0f1115">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="stylesheet" href="style.css">
+<title>Бюджет</title>
+</head>
+<body>
+<main id="app">
+  <section id="v-overview" class="view">
+    <header class="bar">
+      <button class="icon" id="prev" aria-label="Предыдущий месяц">‹</button>
+      <h1 id="month-title"></h1>
+      <button class="icon" id="next" aria-label="Следующий месяц">›</button>
+    </header>
+    <div class="cards">
+      <div class="card"><span>Расходы</span><b id="sum-exp"></b></div>
+      <div class="card"><span>Доходы</span><b id="sum-inc"></b></div>
+      <div class="card"><span>Баланс</span><b id="sum-bal"></b></div>
+    </div>
+    <div class="panel"><div id="donut"></div><ul id="legend" class="legend"></ul></div>
+    <div class="panel"><h2>По дням</h2><div id="bars"></div></div>
+  </section>
+
+  <section id="v-ops" class="view" hidden>
+    <header class="bar"><h1>Операции</h1><button class="chip" id="clear-filter" hidden></button></header>
+    <div id="ops"></div>
+  </section>
+
+  <section id="v-add" class="view" hidden>
+    <header class="bar"><h1>Добавить</h1></header>
+    <label class="drop" for="file">
+      <span>📷 Загрузить скриншот(ы) из банка</span>
+      <small>Можно выбрать несколько</small>
+    </label>
+    <input id="file" type="file" accept="image/*" multiple hidden>
+    <button class="ghost" id="manual">+ Вручную</button>
+    <p id="status" class="status"></p>
+    <div id="review"></div>
+    <button class="primary" id="save" hidden>Сохранить в таблицу</button>
+  </section>
+
+  <section id="v-settings" class="view" hidden>
+    <header class="bar"><h1>Настройки</h1></header>
+    <div class="panel form">
+      <label>URL веб-приложения (Apps Script)<input id="s-url" type="url" placeholder="https://script.google.com/macros/s/…/exec" autocapitalize="off" autocorrect="off"></label>
+      <label>Токен<input id="s-token" type="password" autocapitalize="off" autocorrect="off"></label>
+      <label>Валюта<input id="s-cur" maxlength="4"></label>
+      <button class="primary" id="s-save">Сохранить и обновить</button>
+      <p id="s-msg" class="status"></p>
+    </div>
+  </section>
+</main>
+
+<nav class="tabs">
+  <button data-v="overview" class="on"><i>◔</i>Обзор</button>
+  <button data-v="ops"><i>☰</i>Операции</button>
+  <button data-v="add"><i>＋</i>Добавить</button>
+  <button data-v="settings"><i>⚙︎</i>Настройки</button>
+</nav>
+<script src="app.js"></script>
+</body>
+</html>
